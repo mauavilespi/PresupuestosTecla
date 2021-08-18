@@ -27,7 +27,14 @@ const users = sequelize.define('users', {
             key: 'id'
         },
         allowNull: false
-    }
+    },
+    
+    active : {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: 1
+    },
+
 },{
     //* Timestamps
     timestamps: true
