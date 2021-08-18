@@ -6,7 +6,8 @@ module.exports.userCreator = async (user) => {
     let newUsr = [
         user.username,
         user.pass,
-        user.typeUser_id
+        user.typeUser_id,
+        user.active
     ];
     try {
         let result = await modelUsers.newUser(newUsr);

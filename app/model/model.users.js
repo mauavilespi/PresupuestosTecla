@@ -4,7 +4,7 @@ const users = require('../../db/db.models.users');
 
 module.exports.newUser = async(data) => {
     try {
-        await users.create({username:data[0], pass:data[1], typeUser_id:data[2]})
+        await users.create({username:data[0], pass:data[1], typeUser_id:data[2], active:data[3]})
         return true
 
     } catch (error) {

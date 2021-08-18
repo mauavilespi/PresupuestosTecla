@@ -21,7 +21,7 @@ module.exports.isAdmin = async(req, res, next) =>{
         }
         
     } catch (error) {
-        console.log(error);
+        console.log(`Segunda función: ${error}`);
         throw new Error (error)
         
     }
