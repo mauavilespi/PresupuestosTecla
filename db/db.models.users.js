@@ -29,11 +29,10 @@ const users = sequelize.define('users', {
         allowNull: false
     },
     
-    active : {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: 1
-    },
+    active: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    }
 
 },{
     //* Timestamps
