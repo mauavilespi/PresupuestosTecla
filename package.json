@@ -1,0 +1,32 @@
+{
+  "name": "presupuestostecla",
+  "version": "1.0.0",
+  "description": "Ticket 1 Sprint 3",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mauavilespi/PresupuestosTecla.git"
+  },
+  "author": "Mauricio AP",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mauavilespi/PresupuestosTecla/issues"
+  },
+  "homepage": "https://github.com/mauavilespi/PresupuestosTecla#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "nodemon": "^2.0.12",
+    "sequelize": "^6.6.5",
+    "tedious": "^11.4.0"
+  }
+}
