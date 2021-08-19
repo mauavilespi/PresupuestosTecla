@@ -21,7 +21,8 @@ module.exports.isAdmin = async(req, res, next) =>{
         }
         
     } catch (error) {
-        console.log(`Segunda función: ${error}`);
+        console.log(error);
+        res.status(401).json({message: "Usted no puede realizar esto porque no pertenece a los administradores"})
         throw new Error (error)
         
     }
