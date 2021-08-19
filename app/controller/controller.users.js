@@ -10,11 +10,17 @@ module.exports.userCreator = async (user) => {
         user.active
     ];
     try {
-        let result = await modelUsers.newUser(newUsr);
-        if (result) {
-            return 'Se ha creado el usuario correctamente'
+        let sameUser = await modelUsers.sameUser(newUsr[0]);
+        if(!sameUser){
+
+            let result = await modelUsers.newUser(newUsr);
+            if (result) {
+                return 'Se ha creado el usuario correctamente'
+            } else {
+                throw new Error ('Error en la creación de usuario')
+            }
         } else {
-            throw new Error ('Error en la creación de usuario')
+            return  `El usuario ${newUsr[0]} ya existe`
         }
 
     } catch (error) {
@@ -44,6 +50,7 @@ module.exports.verifyValidUser = async (user) => {
     }
 }
 
+//* Verify Type of User (admin or normal)
 module.exports.typeOfUser = async(user) => {
     let usrTMP = user.user;
     try {
@@ -52,6 +59,23 @@ module.exports.typeOfUser = async(user) => {
         
     } catch (error) {
         console.log(error)
+        throw new Error ('Ocurrió un error inesperado')
+        
+    }
+}
+
+//* Delete User (change "active" to 0)
+module.exports.userDelete = async(data) => {
+    try {
+        let result = await modelUsers.delUser(data);
+        if(result){
+            return `El usuario con id ${data} se ha eliminado correctamente`
+        } else {
+            throw new Error ('Error en la eliminación del usuario')
+        }
+        
+    } catch (error) {
+        console.log(error);
         throw new Error ('Ocurrió un error inesperado')
         
     }

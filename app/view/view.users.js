@@ -48,4 +48,20 @@ module.exports = async(app) => {
         }
       
     });
+
+    //* DELETE user (change 'active' to 0)
+    app.delete('/deleteUser/:id', midd.isAdmin, async(req,res) => {
+        let idUser = req.params.id;
+        console.log(idUser);
+        try {
+            let result = await controllerUsers.userDelete(idUser);
+            res.status(200).json({"status": result})
+            
+        } catch (error) {
+            console.log(error);
+            res.status(400).json('Ocurrió un error inesperado');
+
+            
+        }
+    });
 }

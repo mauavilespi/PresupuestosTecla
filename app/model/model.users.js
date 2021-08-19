@@ -48,3 +48,35 @@ module.exports.typeUser = async (data) => {
         
     }
 }
+
+module.exports.sameUser = async(data) => {
+    try {
+        let result = await users.findOne({
+            where: {
+                username: data
+            }
+        });
+        return result;
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error (error);
+        
+    }
+}
+
+module.exports.delUser = async(data) => {
+    try {
+        let result = await users.update({active:0},{
+            where: {
+                id: data
+            }
+        });
+        return result;
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error (error);
+        
+    }
+}
