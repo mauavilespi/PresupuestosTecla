@@ -10,7 +10,18 @@ const midd = require('../../midd/midd.users');
 
 module.exports = async(app) => {
     //* GET all users
-    app.get('/users', (req, res) => {
+    app.get('/users', midd.isAdmin, async(req, res) => {
+        try {
+            let result = await controllerUsers.getAllUsers();
+            if(result) {
+                res.status(200).json(result)
+            }
+            
+        } catch (error) {
+            console.log(error);
+            res.status(400).send('No se ha podido listar a los usuarios.')
+            
+        }
       
     });
 

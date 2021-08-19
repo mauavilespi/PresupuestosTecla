@@ -80,3 +80,19 @@ module.exports.delUser = async(data) => {
         
     }
 }
+
+module.exports.getUsers = async() => {
+    try {
+        let result = await users.findAll({
+            where: {
+                active: 1
+            }
+        });
+        return result;
+
+    } catch (error) {
+        console.log(error);
+        throw new Error (error);
+    }
+    
+}

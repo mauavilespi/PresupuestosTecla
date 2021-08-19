@@ -80,3 +80,16 @@ module.exports.userDelete = async(data) => {
         
     }
 }
+
+//* Get All Users
+module.exports.getAllUsers = async () => {
+    try {
+        let result = await modelUsers.getUsers();
+        return result;
+        
+    } catch (error) {
+        console.log(error);
+        throw new Error ('Ocurrió un error inesperado')
+        
+    }
+}
