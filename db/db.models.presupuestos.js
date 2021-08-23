@@ -3,32 +3,32 @@
 const {DataTypes} = require('sequelize');
 const sequelize = require('./db.connection');
 
-//*typeUser model
-const typeUser = require('./db.models.typeuser');
+//* users model
+const users = require('./db.models.users');
 
-//? users Model
-const users = sequelize.define('users', {
+//? presupuestos Model
+const presupuestos = sequelize.define('presupuestos', {
     
-    username: {
-        type: DataTypes.STRING(20),
+    namepresupuesto: {
+        type: DataTypes.STRING(25),
         allowNull: false,
     },
     
-    pass: {
+    version: {
         type: DataTypes.STRING(20),
         allowNull: false
     },
     
-    //* Type of user (admin (1) or normal(2))
-    typeUser_id: {
+    //* user
+    users_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: typeUser,
+            model: users,
             key: 'id'
         },
         allowNull: false
     },
-    
+
     active: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -40,4 +40,4 @@ const users = sequelize.define('users', {
 });
 
 //? export module
-module.exports = users;
+module.exports = presupuestos;

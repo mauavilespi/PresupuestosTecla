@@ -17,8 +17,19 @@ const templates = require('./app/view/view.templates');
 const usersView = require('./app/view/view.users');
 
 //? Models DB
+//* Users
 const usersDB = require('./db/db.models.users');
 const typeUserDB = require('./db/db.models.typeuser');
+//* Tables
+const conceptosDB = require('./db/db.models.conceptos');
+const costosDB = require('./db/db.models.costos');
+const costosdirectosDB = require('./db/db.models.costosdirectos');
+const estadosresultadosDB = require('./db/db.models.estadosresultados');
+const flujosefectivoDB = require('./db/db.models.flujosefectivo');
+const gastosadministrativosDB = require('./db/db.models.gastosadministrativos');
+const ingresosDB = require('./db/db.models.ingresos');
+const presupuestosDB = require('./db/db.models.presupuestos');
+const recursosDB = require('./db/db.models.recursos');
 
 //? Middlewares
 const middleware = require('./midd/midd.global');
@@ -42,8 +53,19 @@ const startServer = async() => {
     try {
 
         //* Connection with database
+        //* Users
         await usersDB.sync({alter:true});
         await typeUserDB.sync({alter:true});
+        //*Tables
+        await conceptosDB.sync({alter:true});
+        await costosDB.sync({alter:true});
+        await costosdirectosDB.sync({alter:true});
+        await estadosresultadosDB.sync({alter:true});
+        await flujosefectivoDB.sync({alter:true});
+        await gastosadministrativosDB.sync({alter:true});
+        await ingresosDB.sync({alter:true});
+        await presupuestosDB.sync({alter:true});
+        await recursosDB.sync({alter:true});
         await sequelize.authenticate();
         console.log('Conexión con la base de datos realizada correctamente');
 
