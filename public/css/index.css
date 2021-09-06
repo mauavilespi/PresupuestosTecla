@@ -1,0 +1,30 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.logoMain {
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    margin-bottom: -20px;
+}
+
+.slogan {
+    color: green;
+}
+
+.logoGit {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.rowLogo {
+    margin-top: 50px;
+}

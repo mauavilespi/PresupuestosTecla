@@ -9,15 +9,9 @@ const typeUser = require('./db.models.typeuser');
 //? users Model
 const users = sequelize.define('users', {
     
-    username: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-    },
+    username: {type: DataTypes.STRING(20), allowNull: false},
     
-    pass: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-    },
+    pass: {type: DataTypes.STRING(20), allowNull: false},
     
     //* Type of user (admin (1) or normal(2))
     typeUser_id: {
@@ -29,10 +23,7 @@ const users = sequelize.define('users', {
         allowNull: false
     },
     
-    active: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    active: {type: DataTypes.INTEGER, allowNull: false}
 
 },{
     //* Timestamps

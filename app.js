@@ -32,10 +32,7 @@ const presupuestosDB = require('./db/db.models.presupuestos');
 const recursosDB = require('./db/db.models.recursos');
 
 //? Middlewares
-const middleware = require('./midd/midd.global');
-
-//? Body Parser
-const bodyParser = require('body-parser');
+const middlewareGlobal = require('./middleware/midd.global');
 
 //! Global configs for use of ejs
 app.use(express.static(__dirname + '/public'))
@@ -45,8 +42,7 @@ app.set('views', __dirname + '/views')
 //! Global middlewares
 app.use(express.json());
 app.use(cors());
-app.use(middleware.limiter);
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(middlewareGlobal.limiter);
 
 //! Server start
 const startServer = async() => {

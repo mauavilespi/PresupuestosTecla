@@ -12,65 +12,29 @@ const conceptos = require('./db.models.conceptos');
 //? costosdirectos model
 const costosdirectos = sequelize.define('costosdirectos', {
 
-    mes1: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes1: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes2: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes2: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes3: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes3: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes4: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes4: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes5: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes5: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes6: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes6: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes7: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes7: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes8: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes8: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes9: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes9: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes10: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes10: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes11: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes11: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes12: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes12: {type: DataTypes.FLOAT, allowNull: true},
 
     //* presupuestos
     presupuestos_id: {
@@ -92,10 +56,7 @@ const costosdirectos = sequelize.define('costosdirectos', {
         allowNull: false
     },
 
-    active: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    active: {type: DataTypes.INTEGER, allowNull: false}
     
 },{
     //* Desactivate timestamps

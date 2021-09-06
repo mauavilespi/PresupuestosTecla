@@ -6,11 +6,11 @@ const controllerUsers = require('../controller/controller.users');
 const servicesUsers = require('../../services/services.users');
 
 //? Middlewares
-const midd = require('../../midd/midd.users');
+const middlewareUsers = require('../../middleware/midd.users');
 
 module.exports = async(app) => {
     //* GET all users
-    app.get('/users', midd.isAdmin, async(req, res) => {
+    app.get('/users', middlewareUsers.isAdmin, async(req, res) => {
         try {
             let result = await controllerUsers.getAllUsers();
             if(result) {
@@ -46,7 +46,7 @@ module.exports = async(app) => {
     });
 
     //* POST new user
-    app.post('/newUser', midd.isAdmin, async(req, res) => {
+    app.post('/newUser', middlewareUsers.isAdmin, async(req, res) => {
         let usuarioData = req.body;
         try {
             let result = await controllerUsers.userCreator(usuarioData);
@@ -61,7 +61,7 @@ module.exports = async(app) => {
     });
 
     //* DELETE user (change 'active' to 0)
-    app.delete('/deleteUser/:id', midd.isAdmin, async(req,res) => {
+    app.delete('/deleteUser/:id', middlewareUsers.isAdmin, async(req,res) => {
         let idUser = req.params.id;
         console.log(idUser);
         try {

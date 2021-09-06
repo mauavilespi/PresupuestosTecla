@@ -9,15 +9,9 @@ const users = require('./db.models.users');
 //? presupuestos Model
 const presupuestos = sequelize.define('presupuestos', {
     
-    namepresupuesto: {
-        type: DataTypes.STRING(25),
-        allowNull: false,
-    },
+    namepresupuesto: {type: DataTypes.STRING(25), allowNull: false},
     
-    version: {
-        type: DataTypes.STRING(20),
-        allowNull: false
-    },
+    version: {type: DataTypes.STRING(20), allowNull: false},
     
     //* user
     users_id: {
@@ -29,10 +23,7 @@ const presupuestos = sequelize.define('presupuestos', {
         allowNull: false
     },
 
-    active: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    active: {type: DataTypes.INTEGER, allowNull: false}
 
 },{
     //* Timestamps

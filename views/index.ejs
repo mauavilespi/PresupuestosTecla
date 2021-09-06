@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Los Presupuestos</title>
+    <link rel="shortcut icon" href="/img/LOSPRESUPUESTOS.svg">
+
+    <!--Materialize-->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <!--My Styles-->
+    <link rel="stylesheet" href="/css/index.css">
+
+</head>
+<body>
+
+    <main>
+        <div class="container">
+            <div class="row rowLogo">
+                <div class="col s6 offset-s3 center-align">
+                    <img src="/img/LOSPRESUPUESTOS.svg" class="logoMain">
+                    <h4>Ticket 1 <span class="slogan">Sprint 3</span></h4>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <!--Login-->
+                <div class="col s3 offset-s3 center-align">
+
+                    <a class="waves-effect waves-teal btn-large green darken-3 modal-trigger" href="#loginModal">LOGIN</a>
+
+                    <div class="modal" id="loginModal">
+                        <div class="modal-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6 offset-s3">
+                                        <h4>LOGIN</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--Register-->
+                <div class="col s3 center-align">
+                    
+                    <a class="waves-effect waves-teal btn-large green darken-3 modal-trigger" href="#registerModal">REGISTER</a>
+
+                    <div class="modal" id="registerModal">
+                        <div class="modal-content">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col s6 offset-s3">
+                                        <h4>REGISTER</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!--Footer-->
+    <%- include ('footer') %>
+
+    <!--Materialize-->
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <!--My JS file-->
+    <script src="/js/index.js"></script>
+</body>
+</html>

@@ -9,70 +9,31 @@ const presupuestos = require('./db.models.presupuestos');
 //? costos model
 const costos = sequelize.define('costos', {
 
-    concepto: {
-        type: DataTypes.STRING(30),
-        allowNull: false
-    },
+    concepto: {type: DataTypes.STRING(30), allowNull: false},
     
-    mes1: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes1: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes2: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes2: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes3: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes3: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes4: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes4: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes5: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes5: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes6: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes6: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes7: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes7: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes8: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes8: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes9: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes9: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes10: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes10: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes11: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes11: {type: DataTypes.FLOAT, allowNull: true},
 
-    mes12: {
-        type: DataTypes.FLOAT,
-        allowNull: true
-    },
+    mes12: {type: DataTypes.FLOAT, allowNull: true},
 
     //* presupuestos
     presupuestos_id: {
@@ -84,10 +45,7 @@ const costos = sequelize.define('costos', {
         allowNull: false
     },
 
-    active: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    active: {type: DataTypes.INTEGER, allowNull: false}
     
 },{
     //* Desactivate timestamps

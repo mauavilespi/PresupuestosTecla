@@ -6,15 +6,9 @@ const sequelize = require('./db.connection');
 //? conceptos model
 const conceptos = sequelize.define('conceptos', {
     
-    nameConcepto: {
-        type: DataTypes.STRING(30),
-        allowNull: false
-    },
+    nameConcepto: {type: DataTypes.STRING(30), allowNull: false},
 
-    active: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-    }
+    active: {type: DataTypes.INTEGER, allowNull: false}
     
 },{
     //* Desactivate timestamps
