@@ -40,7 +40,7 @@ module.exports = async(app) => {
     });
 
     //? UPDATE password user
-    app.put('/user/update/password', async(req, res) => {
+    app.put('/user/update/password', middlewareUsers.isToken, async(req, res) => {
         let {username, oldpass, newpass} = req.body;
         if(!username || !oldpass || !newpass) return res.status(400).send({error: 'Datos incompletos'});
 
@@ -73,25 +73,3 @@ module.exports = async(app) => {
         }
     });
 }
-
-/*
-    //* Login
-    app.post('/login', async(req, res) => {
-        let user = req.body;
-        try {
-            let result = await controllerUsers.verifyValidUser(user);
-            if (result) {
-                
-                //? Know if the user is admin or normal
-                let type = await controllerUsers.typeOfUser(user);
-                let token = await servicesUsers.tokenGenerator(user, type);
-                res.json({"Token":token});
-            }
-        } catch (error) {
-            console.log(error)
-            res.status(400).send('Datos erróneos. Por favor, inténtelo otra vez.')
-            
-        }
-
-    });
-    */

@@ -1,4 +1,9 @@
 //! Templates for views
+//! Import the necessary modules
+
+//? Middlewares
+const middlewareUsers = require('../../middleware/middleware.users');
+
 
 module.exports = async (app) => {
 
@@ -7,7 +12,7 @@ module.exports = async (app) => {
       res.render('index')
     });
 
-    app.get('/PresupuestosTecla', (req, res) => {
+    app.get('/PresupuestosTecla', middlewareUsers.isToken, (req, res) => {
       res.render('presupuesto', {usuario: "Pedro"})
     });
     

@@ -9,6 +9,16 @@ class controllerLogin{
         this.data = data
     };
 
+    static verifyToken = async(token) => {
+        try {
+            let resultado = await modelLogin.tokenUser(token);
+            return resultado;
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No tiene un token válido para la sesión');
+        }
+    };
+
     static verifyTokenAdmin = async(token) => {
         try {
             let resultado = await modelLogin.tokenAdmin(token);

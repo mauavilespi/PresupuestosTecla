@@ -20,6 +20,16 @@ class modelLogin{
         }
     };
 
+    static tokenUser = async(token) => {
+        try {
+            const result = jwt.verify(token, process.env.SECRET_KEY_normal);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No fue posible verificar el token')
+        }
+    }
+
     static newToken = async(data) => {
         try {
             //? ADMIN (1)
