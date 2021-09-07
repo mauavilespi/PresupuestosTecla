@@ -37,9 +37,11 @@ module.exports.isToken = async(req, res, next) => {
             } else {
                 res.status(401).send({message: "Su token no es aceptado."})
             }
+        } else {
+            res.status(400).send({message: "Este es un sistema seguro y requiere autorización"})
         }
     } catch (error) {
         console.log(error);
-        res.status(400).send({message: "Este es un sistema seguro y requiere autorización"})
+        res.status(401).send({message: "Este es un sistema seguro y requiere autorización"})
     }
 }
