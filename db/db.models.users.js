@@ -11,7 +11,7 @@ const users = sequelize.define('users', {
     
     username: {type: DataTypes.STRING(20), allowNull: false},
     
-    pass: {type: DataTypes.STRING(20), allowNull: false},
+    pass: {type: DataTypes.STRING, allowNull: false},
     
     //* Type of user (admin (1) or normal(2))
     typeUser_id: {

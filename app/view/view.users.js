@@ -2,29 +2,79 @@
 //? Controller users
 const controllerUsers = require('../controller/controller.users');
 
-//? Services users
-const servicesUsers = require('../../services/services.users');
-
 //? Middlewares
-const middlewareUsers = require('../../middleware/midd.users');
+const middlewareUsers = require('../../middleware/middleware.users');
 
 module.exports = async(app) => {
-    //* GET all users
-    app.get('/users', middlewareUsers.isAdmin, async(req, res) => {
+    //? Create new User
+    app.post('/user/new', async(req, res) => {
+        let {username, pass, typeUser_id, active} = req.body
+        if(!username || !pass || !typeUser_id || !active) return res.status(400).send({error: 'Datos incompletos'})
+
         try {
-            let result = await controllerUsers.getAllUsers();
-            if(result) {
-                res.status(200).json(result)
-            }
+            let verify = await controllerUsers.userExists(username);
+            if(verify) return res.status(400).send({error: `Usuario ${username} ya registrado`})
+
+            let result = await controllerUsers.userCreate(req.body);
+            res.status(200).json({status: result})
             
         } catch (error) {
-            console.log(error);
-            res.status(400).send('No se ha podido listar a los usuarios.')
-            
+            console.log(error)
+            res.status(400).json('Ocurrió un error inesperado')
         }
       
     });
 
+    //? GET all users
+    app.get('/user', middlewareUsers.isAdmin, async(req, res) => {
+        try {
+            let result = await controllerUsers.userGet();
+            if(result) return res.status(200).send(result)
+            res.status(400).send({error: 'No se han encontrado usuarios'})
+            
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({error: 'No se ha podido listar a los usuarios'})
+        }
+      
+    });
+
+    //? UPDATE password user
+    app.put('/user/update/password', async(req, res) => {
+        let {username, oldpass, newpass} = req.body;
+        if(!username || !oldpass || !newpass) return res.status(400).send({error: 'Datos incompletos'});
+
+        try {
+            let verifyUsername = await controllerUsers.userExists(username);
+            if(!verifyUsername) return res.status(400).send({error: 'No se puede modificar un usuario que no existe'});
+
+            let result = await controllerUsers.userUpdatePassword(req.body);
+            res.status(200).send({status: result});
+            
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({error: 'Ha ocurrido un error inesperado'})
+        }
+    });
+
+    //? DELETE user
+    app.delete('/user/delete/:username', middlewareUsers.isAdmin, async(req, res) => {
+        let userParams = req.params.username;
+        try {
+            let verifyUsername = await controllerUsers.userExists(userParams);
+            if(!verifyUsername) return res.status(400).send({error: 'No se puede eliminar un usuario que no existe'});
+
+            let result = await controllerUsers.userDelete(userParams);
+            res.status(200).send({status: result});
+            
+        } catch (error) {
+            console.log(error);
+            res.status(400).send({error: 'Ha ocurrido un error inesperado'})
+        }
+    });
+}
+
+/*
     //* Login
     app.post('/login', async(req, res) => {
         let user = req.body;
@@ -44,35 +94,4 @@ module.exports = async(app) => {
         }
 
     });
-
-    //* POST new user
-    app.post('/newUser', middlewareUsers.isAdmin, async(req, res) => {
-        let usuarioData = req.body;
-        try {
-            let result = await controllerUsers.userCreator(usuarioData);
-            res.status(200).json({"status": result})
-            
-        } catch (error) {
-            console.log(error)
-            res.status(400).json('Ocurrió un error inesperado')
-            
-        }
-      
-    });
-
-    //* DELETE user (change 'active' to 0)
-    app.delete('/deleteUser/:id', middlewareUsers.isAdmin, async(req,res) => {
-        let idUser = req.params.id;
-        console.log(idUser);
-        try {
-            let result = await controllerUsers.userDelete(idUser);
-            res.status(200).json({"status": result})
-            
-        } catch (error) {
-            console.log(error);
-            res.status(400).json('Ocurrió un error inesperado');
-
-            
-        }
-    });
-}
+    */

@@ -1,35 +1,82 @@
+//! Import the necessary modules
 //? Model users
 const modelUsers = require('../model/model.users')
 
-//* users Creator
-module.exports.userCreator = async (user) => {
-    let newUsr = [
-        user.username,
-        user.pass,
-        user.typeUser_id,
-        user.active
-    ];
-    try {
-        let sameUser = await modelUsers.sameUser(newUsr[0]);
-        if(!sameUser){
+class controllerUsers {
+    constructor(data) {
+        this.data = data
+    };
 
-            let result = await modelUsers.newUser(newUsr);
-            if (result) {
-                return 'Se ha creado el usuario correctamente'
-            } else {
-                throw new Error ('Error en la creación de usuario')
-            }
-        } else {
-            return  `El usuario ${newUsr[0]} ya existe`
+    //* exists the user?
+    static userExists = async (username) => {
+        let tmpUser = username;
+        try {
+            let result = await modelUsers.verifyUser(tmpUser);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido verificar la existencia del usuario');
+        }
+    };
+
+    //* users Creator
+    static userCreate = async(data) => {
+        let newUser = [data.username, data.pass, data.typeUser_id, data.active];
+        try {
+            let result = await modelUsers.newUser(newUser);
+            if (result) return 'Se ha creado el usuario correctamente'
+            else return 'Error en la creación de usuario'
+        } catch (error) {
+            console.log(error)
+            throw new Error ('No se ha podido crear el usuario')
+        }
+    };
+
+    //* user GET
+    static userGet = async () => {
+        try {
+            let result = await modelUsers.getUsers();
+            return result;
+            
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido realizar la petición')
+            
+        }
+    };
+
+    //* user Update Password
+    static userUpdatePassword = async(data) => {
+        let updatePass = [data.username, data.oldpass, data.newpass];
+        try {
+            let result = await modelUsers.updatePassUser(updatePass);
+            if(result) return 'Se ha actualizado la contraseña correctamente'
+            else return 'Error en la actualización de usuario'
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido actualizar la contraseña del usuario');
+        }
+    };
+
+    //* user Delete
+    static userDelete = async(user) => {
+        try {
+            let result = await modelUsers.deleteUser(user);
+            if (result) return `El usuario ${user} ha sido eliminado`
+            else return 'Error en la eliminación de usuario'
+            
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido eliminar al usuario');
         }
 
-    } catch (error) {
-        console.log(error)
-        throw new Error ('No se ha podido crear el usuario')
-        
-    }
-}
+    };
 
+};
+
+module.exports = controllerUsers;
+
+/***************
 //* verify Valid User
 module.exports.verifyValidUser = async (user) => {
     let usrTMP = [
@@ -64,32 +111,4 @@ module.exports.typeOfUser = async(user) => {
     }
 }
 
-//* Delete User (change "active" to 0)
-module.exports.userDelete = async(data) => {
-    try {
-        let result = await modelUsers.delUser(data);
-        if(result){
-            return `El usuario con id ${data} se ha eliminado correctamente`
-        } else {
-            throw new Error ('Error en la eliminación del usuario')
-        }
-        
-    } catch (error) {
-        console.log(error);
-        throw new Error ('Ocurrió un error inesperado')
-        
-    }
-}
-
-//* Get All Users
-module.exports.getAllUsers = async () => {
-    try {
-        let result = await modelUsers.getUsers();
-        return result;
-        
-    } catch (error) {
-        console.log(error);
-        throw new Error ('Ocurrió un error inesperado')
-        
-    }
-}
+*/

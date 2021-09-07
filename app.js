@@ -32,7 +32,7 @@ const presupuestosDB = require('./db/db.models.presupuestos');
 const recursosDB = require('./db/db.models.recursos');
 
 //? Middlewares
-const middlewareGlobal = require('./middleware/midd.global');
+const middlewareGlobal = require('./middleware/middleware.global');
 
 //! Global configs for use of ejs
 app.use(express.static(__dirname + '/public'))
