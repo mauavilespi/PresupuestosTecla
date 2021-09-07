@@ -89,61 +89,28 @@ class modelUsers {
             console.log(error);
             throw new Error ('No se ha podido elminar al usuario');
         }
+    };
+
+    static loginUser = async(data) => {
+        try {
+            let result = await users.findOne({
+                where: {
+                    username: data[0]
+                },
+                attributes: ['pass', 'typeUser_id']
+            });
+            if(!result) return 0
+
+            //* Verify password
+            const passOK = await bcrypt.compare(data[1], result.dataValues.pass);
+            if(passOK) return result.dataValues.typeUser_id
+
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido encontrar al usuario');
+        }
     }
 
 };
 
 module.exports = modelUsers;
-
-/*
-module.exports.existUser = async(data) => {
-    try {
-        let result = await users.findOne({
-            where: {username: `${data[0]}`, pass: `${data[1]}`}
-        })
-        if (result){
-            return true
-        } else {
-            return false
-        }
-        
-    } catch (error) {
-        console.log(error);
-        throw new Error (error);
-
-    }
-}
-
-module.exports.typeUser = async (data) => {
-    try {
-        let result = await users.findOne({
-            where: {
-                username: data
-            },
-            attributes: ['typeUser_id']
-            });
-        return result;
-    
-    } catch (error) {
-        console.log(error);
-        throw new Error (error);
-        
-    }
-}
-
-module.exports.delUser = async(data) => {
-    try {
-        let result = await users.update({active:0},{
-            where: {
-                id: data
-            }
-        });
-        return result;
-        
-    } catch (error) {
-        console.log(error);
-        throw new Error (error);
-        
-    }
-}
-*/

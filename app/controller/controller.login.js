@@ -19,7 +19,28 @@ class controllerLogin{
         }
     };
 
+    static typeUser = async(data) => {
+        try {
+            let tmpUser = [data.username, data.pass];
+            let result = await modelUsers.loginUser(tmpUser);
+            return result;
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido obtener el tipo de usuario');
+        }
+    };
 
+    static generateToken = async(data, type) => {
+        try {
+            let tmpUsername = [data, type];
+            let result = await modelLogin.newToken(tmpUsername);
+            return result
+            
+        } catch (error) {
+            console.log(error);
+            throw new Error ('No se ha podido generar el token')
+        }
+    };
 
 };
 

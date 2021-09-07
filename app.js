@@ -15,6 +15,7 @@ const cors = require('cors');
 //? Routes
 const templates = require('./app/view/view.templates');
 const usersView = require('./app/view/view.users');
+const loginView = require('./app/view/view.login');
 
 //? Models DB
 //* Users
@@ -79,3 +80,4 @@ const startServer = async() => {
 startServer();
 templates(app);
 usersView(app);
+loginView(app);
